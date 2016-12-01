@@ -6,7 +6,7 @@
 #    By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2016/11/29 07:44:13 by vlistrat          #+#    #+#              #
-#    Updated: 2016/11/29 08:01:17 by vlistrat         ###   ########.fr        #
+#    Updated: 2016/11/30 14:59:00 by vlistrat         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -18,7 +18,7 @@ INC = ./includes/
 
 LIBFT_PATH = ./libft/
 
-SRCS_NAME = main.c
+SRCS_NAME = main.c get_env.c
 
 SRCS = $(addprefix $(SRCS_PATH),$(SRCS_NAME))
 
@@ -30,7 +30,9 @@ LIBFT = -L$(LIBFT_PATH) $(LIBFT_NAME)
 
 CC = gcc
 
-CFLAGS = -Wall -Werror -Wextra -I $(INC)
+CFLAGS_REL = -Wall -Werror -Wextra -I $(INC)
+
+CFLAGS = -I $(INC)
 
 BL = \x1b[0m
 RED = \x1b[31m
@@ -43,7 +45,7 @@ all: $(NAME)
 
 $(NAME): $(OBJ)
 	@(make -C $(LIBFT_PATH))
-	@($(CC) -o $(NAME) $(OBJ))
+	@($(CC) -o $(NAME) $(OBJ) $(LIBFT))
 	@(echo "$(HPURPLE)$(NAME)$(BL) $(GREEN)created.$(BL) $(HGREEN)✓$(BL)")
 
 %.o: %.c
