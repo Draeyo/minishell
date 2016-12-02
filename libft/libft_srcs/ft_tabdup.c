@@ -19,9 +19,9 @@ char			**ft_tabdup(char **tab)
 	int		len;
 
 	i = -1;
-	len = ft_tablen(tab);
+	len = ft_tablen(tab) + 1;
 	ret = (char**)malloc(sizeof(*ret) * len);
-	ret[len] = NULL;
+	ret[len--] = NULL;
 	while (++i < len)
 		ret[i] = ft_strdup(tab[i]);
 	return (ret);

@@ -8,7 +8,7 @@ char	*get_env(char **env, char *rule)
 
 	i = -1;
 	ret = NULL;
-	len = ft_strlen(rule) + 1;
+	len = ft_strlen(rule);
 	while (env[++i])
 		if (ft_strstr(env[i], rule))
 			ret = ft_strsub(env[i], len, ft_strlen(env[i]) - len);
