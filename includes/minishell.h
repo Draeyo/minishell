@@ -31,6 +31,7 @@
 ** ERRORS
 */
 # define NOT_FOUND 1
+# define WRONG_PATH 2
 
 /*
 ** EXIT
@@ -48,6 +49,9 @@
 # define COMMAND msh->command
 # define PIDSTAT msh->pidstat
 # define USER msh->user
+# define CWD msh->cwd
+# define OLD_CWD msh->old_cwd
+# define TMP_CWD msh->tmp_cwd
 
 typedef struct		s_msh
 {
@@ -59,19 +63,25 @@ typedef struct		s_msh
 	char		*command;
 	char		*user;
 	int 		pidstat;
+	char		*cwd;
+	char		*old_cwd;
+	char 		*tmp_cwd;
 }					t_msh;
 
 int 				ft_error_msh(int e, char *str);
 int 				ft_exit(int e, t_msh *msh);
+int 				split_fword(t_msh *msh);
+int 				cmd_exeptions(t_msh *msh);
 
 char				*get_env(char **env, char *rule);
 char				*join_path(char *s1, char *s2);
 
-void				split_fword(t_msh *msh);
 void				get_input(t_msh *msh);
 void				prompt_cmd(t_msh *msh);
 void				start_process(t_msh *msh);
 void				free_tab(char **tab);
 void				free_msh(t_msh *msh);
+void				move_cd(t_msh *msh);
+void				print_env(t_msh *msh);
 
 # endif
