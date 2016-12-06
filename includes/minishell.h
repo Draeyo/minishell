@@ -72,6 +72,8 @@ int 				ft_error_msh(int e, char *str);
 int 				ft_exit(int e, t_msh *msh);
 int 				split_fword(t_msh *msh);
 int 				cmd_exeptions(t_msh *msh);
+int 				ft_setenv(t_msh *msh);
+int 				ft_unsetenv(t_msh *msh);
 
 char				*get_env(char **env, char *rule);
 char				*join_path(char *s1, char *s2);
@@ -79,9 +81,10 @@ char				*join_path(char *s1, char *s2);
 void				get_input(t_msh *msh);
 void				prompt_cmd(t_msh *msh);
 void				start_process(t_msh *msh);
-void				free_tab(char **tab);
+void				ft_free_tab(char **tab);
 void				free_msh(t_msh *msh);
 void				move_cd(t_msh *msh);
 void				print_env(t_msh *msh);
+void				ft_echo(t_msh *msh);
 
 # endif

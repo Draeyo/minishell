@@ -55,8 +55,11 @@ void			print_env(t_msh *msh)
 	int 	i;
 
 	i = -1;
-	while (ENV[++i])
-		ft_printf("%s\n", ENV[i]);
+	if (!ENV)
+		ft_printf("\n");
+	else
+		while (ENV[++i])
+			ft_printf("%s\n", ENV[i]);
 }
 
 int 			cmd_exceptions(t_msh *msh)
@@ -67,6 +70,12 @@ int 			cmd_exceptions(t_msh *msh)
 		print_env(msh);
 	else if (!ft_strcmp(COMMAND, "cd"))
 		move_cd(msh);
+	else if (!ft_strcmp(COMMAND, "setenv"))
+		ft_setenv(msh);
+	else if (!ft_strcmp(COMMAND, "unsetenv"))
+		ft_unsetenv(msh);
+	else if (!ft_strcmp(COMMAND, "echo"))
+		ft_echo(msh);
 	else
 		return (1);
 	return (0);
