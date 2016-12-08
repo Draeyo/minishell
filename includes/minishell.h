@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 08:01:27 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/11/30 14:34:16 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/08 08:28:23 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,18 +62,18 @@ typedef struct		s_msh
 	char		**args;
 	char		*command;
 	char		*user;
-	int 		pidstat;
+	int			pidstat;
 	char		*cwd;
 	char		*old_cwd;
-	char 		*tmp_cwd;
+	char		*tmp_cwd;
 }					t_msh;
 
-int 				ft_error_msh(int e, char *str);
-int 				ft_exit(int e, t_msh *msh);
-int 				split_fword(t_msh *msh);
-int 				cmd_exeptions(t_msh *msh);
-int 				ft_setenv(t_msh *msh);
-int 				ft_unsetenv(t_msh *msh);
+int					ft_error_msh(int e, char *str);
+int					ft_exit(int e, t_msh *msh);
+int					split_fword(t_msh *msh);
+int					cmd_exeptions(t_msh *msh);
+int					ft_setenv(t_msh *msh);
+int					ft_unsetenv(t_msh *msh);
 
 char				*get_env(char **env, char *rule);
 char				*join_path(char *s1, char *s2);
@@ -87,4 +87,4 @@ void				move_cd(t_msh *msh);
 void				print_env(t_msh *msh);
 void				ft_echo(t_msh *msh);
 
-# endif
+#endif

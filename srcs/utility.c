@@ -1,11 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utility.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/08 08:29:11 by vlistrat          #+#    #+#             */
+/*   Updated: 2016/12/08 08:30:40 by vlistrat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 static void		change_current_dir(t_msh *msh, char *pwd)
 {
-	int 	i;
+	int		i;
 
 	i = -1;
-
 	while (ENV[++i])
 		if (ft_strstr(ENV[i], "PWD"))
 		{
@@ -18,7 +29,7 @@ static void		change_current_dir(t_msh *msh, char *pwd)
 
 void			move_cd(t_msh *msh)
 {
-	char 	*homedir;
+	char	*homedir;
 
 	if ((ARGS[1] && ft_strcmp(ARGS[1], "-")) || !ARGS[1])
 	{
@@ -52,7 +63,7 @@ void			move_cd(t_msh *msh)
 
 void			print_env(t_msh *msh)
 {
-	int 	i;
+	int		i;
 
 	i = -1;
 	if (!ENV)
@@ -62,7 +73,7 @@ void			print_env(t_msh *msh)
 			ft_printf("%s\n", ENV[i]);
 }
 
-int 			cmd_exceptions(t_msh *msh)
+int				cmd_exceptions(t_msh *msh)
 {
 	if (!ft_strcmp(COMMAND, "exit"))
 		ft_exit(EXIT_CMD, msh);
@@ -83,7 +94,7 @@ int 			cmd_exceptions(t_msh *msh)
 
 int				split_fword(t_msh *msh)
 {
-	int 	i;
+	int		i;
 
 	i = 0;
 	while (INPUT[i] && INPUT[i] != ' ')

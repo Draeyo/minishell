@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2015/11/26 12:52:32 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/01 08:01:37 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/08 08:38:49 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void				ft_lstiter(t_list *lst, void (*f)(t_list *elem));
 t_list				*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem));
 
 char				**ft_tabdup(char **tab);
-int 				ft_tablen(char **tab);
+int					ft_tablen(char **tab);
 void				free_tab(char **tab);
 
 #endif

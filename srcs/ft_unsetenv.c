@@ -1,10 +1,22 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   ft_unsetenv.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/08 08:35:16 by vlistrat          #+#    #+#             */
+/*   Updated: 2016/12/08 08:35:43 by vlistrat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-int 	ft_unsetenv(t_msh *msh)
+int		ft_unsetenv(t_msh *msh)
 {
 	int		i;
 	int		j;
-	int 	a;
+	int		a;
 	char	*env_var;
 
 	i = -1;
@@ -12,7 +24,8 @@ int 	ft_unsetenv(t_msh *msh)
 	a = 0;
 	if (!ARGS[1])
 		return (-1);
-	while (ARGS[1][++j] != '=');
+	while (ARGS[1][++j] != '=')
+		;
 	env_var = ft_strsub(ARGS[1], 0, j);
 	j = 0;
 	while (ENV[++i])
@@ -25,6 +38,11 @@ int 	ft_unsetenv(t_msh *msh)
 			if (ENV[j])
 				ENV[i] = ft_strdup(ENV[j]);
 			a = 1;
+		}
+		else if (!ENV[j] && ft_strstr(ENV[i], env_var))
+		{
+			free(ENV[i]);
+			ENV[i] = NULL;
 		}
 	}
 	free(env_var);

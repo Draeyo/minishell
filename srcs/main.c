@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 08:11:01 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/01 08:04:57 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/08 08:34:22 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,16 +15,14 @@
 int		main(int ac, char **av, char **env)
 {
 	t_msh	msh;
-	int 	i;
+	int		i;
 	pid_t	process;
-	int 	status;
-	char 	*cmd;
-	int 	ret;
+	int		status;
+	char	*cmd;
 
 	i = 0;
 	status = 0;
 	cmd = NULL;
-	ret = -1;
 	msh.env = ft_tabdup(env);
 	msh.path = get_env(env, "PATH=");
 	msh.paths = ft_strsplit(msh.path, ':');

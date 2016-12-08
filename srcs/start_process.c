@@ -1,12 +1,24 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   start_process.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/08 08:31:11 by vlistrat          #+#    #+#             */
+/*   Updated: 2016/12/08 08:31:12 by vlistrat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	start_process(t_msh *msh)
 {
 	pid_t	process;
-	int 	i;
+	int		i;
 	char	*cmd;
 	int		tablen;
-	int 	ret;
+	int		ret;
 
 	process = fork();
 	i = -1;
