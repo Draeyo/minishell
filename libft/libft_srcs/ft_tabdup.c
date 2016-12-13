@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/01 07:57:05 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/01 08:04:11 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/13 10:12:53 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,8 +19,10 @@ char			**ft_tabdup(char **tab)
 	int		len;
 
 	i = -1;
-	len = ft_tablen(tab) + 1;
-	ret = (char**)malloc(sizeof(*ret) * len);
+	if (!tab)
+		return (NULL);
+	len = ft_tablen(tab);
+	ret = (char**)malloc(sizeof(*ret) * (len + 1));
 	ret[len--] = NULL;
 	while (++i < len)
 		ret[i] = ft_strdup(tab[i]);

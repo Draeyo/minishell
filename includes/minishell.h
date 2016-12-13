@@ -32,6 +32,7 @@
 */
 # define NOT_FOUND 1
 # define WRONG_PATH 2
+#define NO_HOME 3
 
 /*
 ** EXIT
@@ -64,8 +65,6 @@ typedef struct		s_msh
 	char		*user;
 	int			pidstat;
 	char		*cwd;
-	char		*old_cwd;
-	char		*tmp_cwd;
 }					t_msh;
 
 int					ft_error_msh(int e, char *str);
@@ -74,6 +73,7 @@ int					split_fword(t_msh *msh);
 int					cmd_exeptions(t_msh *msh);
 int					ft_setenv(t_msh *msh);
 int					ft_unsetenv(t_msh *msh);
+int 				ft_start_with(char *str, char *comp);
 
 char				*get_env(char **env, char *rule);
 char				*join_path(char *s1, char *s2);
@@ -86,5 +86,7 @@ void				free_msh(t_msh *msh);
 void				move_cd(t_msh *msh);
 void				print_env(t_msh *msh);
 void				ft_echo(t_msh *msh);
+void				change_oldpwd(char **env);
+void				no_env(t_msh *msh);
 
 #endif

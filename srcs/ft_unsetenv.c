@@ -20,12 +20,12 @@ int		ft_unsetenv(t_msh *msh)
 	char	*env_var;
 
 	i = -1;
-	j = -1;
+	j = 0;
 	a = 0;
 	if (!ARGS[1])
 		return (-1);
-	while (ARGS[1][++j] != '=')
-		;
+	while (ARGS[1][j] && ARGS[1][j] != '=')
+		j++;
 	env_var = ft_strsub(ARGS[1], 0, j);
 	j = 0;
 	while (ENV[++i])
@@ -33,16 +33,20 @@ int		ft_unsetenv(t_msh *msh)
 		++j;
 		if ((ENV[j] && ft_strstr(ENV[i], env_var)) || a)
 		{
+		//	ft_printf("ENV[i] = %s | ENV[j] = %s\n", ENV[i], ENV[j]);
 			free(ENV[i]);
 			ENV[i] = NULL;
 			if (ENV[j])
 				ENV[i] = ft_strdup(ENV[j]);
 			a = 1;
+		//	ft_printf("AFTER - ENV[i] = %s | ENV[j] = %s\n", ENV[i], ENV[j]);
 		}
 		else if (!ENV[j] && ft_strstr(ENV[i], env_var))
 		{
+		//	ft_printf("2 - ENV[i] = %s | ENV[j] = %s\n", ENV[i], ENV[j]);
 			free(ENV[i]);
 			ENV[i] = NULL;
+		//	ft_printf("2 AFTER - ENV[i] = %s | ENV[j] = %s\n", ENV[i], ENV[j]);
 		}
 	}
 	free(env_var);

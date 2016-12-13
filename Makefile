@@ -20,7 +20,7 @@ LIBFT_PATH = ./libft/
 
 SRCS_NAME = main.c get_env.c get_input.c join_path.c utility.c start_process.c \
 			prompt_cmd.c ft_error_msh.c ft_exit.c free_all.c ft_setenv.c \
-			ft_unsetenv.c ft_echo.c
+			ft_unsetenv.c ft_echo.c utility2.c
 
 SRCS = $(addprefix $(SRCS_PATH),$(SRCS_NAME))
 

@@ -1,43 +1,44 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   get_env.c                                          :+:      :+:    :+:   */
+/*   utility2.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2016/12/08 08:36:29 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/08 08:36:35 by vlistrat         ###   ########.fr       */
+/*   Created: 2016/12/13 10:34:42 by vlistrat          #+#    #+#             */
+/*   Updated: 2016/12/13 10:34:43 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int 	ft_start_with(char *str, char *comp)
+void		change_oldpwd(char **env)
 {
 	int 	i;
+	char	*tmp;
 
 	i = -1;
-	if (ft_strlen(str) < ft_strlen(comp))
-		return (0);
-	while (comp[++i])
+	tmp = NULL;
+	while (env[++i])
 	{
-		if (comp[i] != str[i])
-			return (0);
+		if (ft_start_with(env[i], "OLDPWD"))
+		{
+			tmp = getcwd(NULL, 0);
+			free(env[i]);
+			env[i] = ft_strjoin("OLDPWD=", tmp);
+			free(tmp);
+			return ;
+		}
 	}
-	return (1);
 }
 
-char	*get_env(char **env, char *rule)
+void		no_env(t_msh *msh)
 {
-	int		i;
-	char	*ret;
-	int		len;
+	char	*tmp;
 
-	i = -1;
-	ret = NULL;
-	len = ft_strlen(rule);
-	while (env[++i])
-		if (ft_start_with(env[i], rule))
-			ret = ft_strsub(env[i], len, ft_strlen(env[i]) - len);
-	return (ret);
+	tmp = getcwd(NULL, 0);
+	ENV = (char**)malloc(sizeof(char*) * 3);
+	ENV[0] = ft_strjoin("PWD=", tmp);
+	ENV[1] = ft_strjoin("OLDPWD=", tmp);
+	ENV[2] = NULL;
 }

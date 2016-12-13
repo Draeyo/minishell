@@ -6,11 +6,30 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:32:51 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/08 08:32:54 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/08 10:45:50 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
+
+static void 	change_user(t_msh *msh)
+{
+	char *user;
+
+	user = get_env(ENV, "USER=");
+	free(USER);
+	USER = user;
+}
+
+static void 	change_path(t_msh *msh)
+{
+	char	*path;
+
+	path = get_env(ENV, "PATH=");
+	ft_free_tab(PATHS);
+	PATHS = ft_strsplit(path, ':');
+	free(path);
+}
 
 static int		check_env(t_msh *msh)
 {
@@ -61,13 +80,18 @@ int				ft_setenv(t_msh *msh)
 	check = check_env(msh);
 	if (ARGS[1] && check >= 0)
 	{
-		ft_free_tab(ENV);
-		free(new_env[check]);
-		new_env[check] = ft_strdup(ARGS[1]);
-		return (1);
+		free(ENV[check]);
+		ENV[check] = ft_strdup(ARGS[1]);
+	//	return (1);
 	}
 	else if (ARGS[1] && check < 0)
+	{
 		new_env = exp_tab(ENV, ft_tablen(ENV) + 1, ARGS[1]);
-	ENV = new_env;
+		ENV = new_env;
+	}
+	if (ft_start_with(ARGS[1], "PATH="))
+		change_path(msh);
+	else if (ft_start_with(ARGS[1], "USER="))
+		change_user(msh);
 	return (1);
 }
