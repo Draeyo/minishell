@@ -32,7 +32,9 @@
 */
 # define NOT_FOUND 1
 # define WRONG_PATH 2
-#define NO_HOME 3
+# define NO_HOME 3
+# define TM_ARGS 4
+# define P_DENIED 5
 
 /*
 ** EXIT
@@ -77,6 +79,7 @@ int 				ft_start_with(char *str, char *comp);
 
 char				*get_env(char **env, char *rule);
 char				*join_path(char *s1, char *s2);
+char				*home_convpath(t_msh *msh, char *current);
 
 void				get_input(t_msh *msh);
 void				prompt_cmd(t_msh *msh);
@@ -88,5 +91,8 @@ void				print_env(t_msh *msh);
 void				ft_echo(t_msh *msh);
 void				change_oldpwd(char **env);
 void				no_env(t_msh *msh);
+void				change_current_dir(t_msh *msh, char *pwd);
+void				check_env_vars(t_msh *msh);
+void				add_env_var(t_msh *msh, char *var);
 
 #endif

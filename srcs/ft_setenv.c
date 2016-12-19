@@ -39,8 +39,10 @@ static int		check_env(t_msh *msh)
 
 	i = -1;
 	j = -1;
-	while (ARGS[1][++j] != '=')
+	while (ARGS[1][++j] && ARGS[1][j] != '=')
 		;
+	if (j == ft_strlen(ARGS[1]) && ARGS[1][j - 1] != '=')
+		return (-2);
 	env_var = ft_strsub(ARGS[1], 0, j);
 	while (ENV[++i])
 		if (ft_strstr(ENV[i], env_var))
@@ -77,12 +79,12 @@ int				ft_setenv(t_msh *msh)
 	i = -1;
 	if (!ARGS[1])
 		return (-1);
-	check = check_env(msh);
+	if ((check = check_env(msh)) == -2)
+		return (0);
 	if (ARGS[1] && check >= 0)
 	{
 		free(ENV[check]);
 		ENV[check] = ft_strdup(ARGS[1]);
-	//	return (1);
 	}
 	else if (ARGS[1] && check < 0)
 	{

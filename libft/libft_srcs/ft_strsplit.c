@@ -69,15 +69,14 @@ char					**ft_strsplit(char const *s, char c)
 	str = (char*)s;
 	start = ft_start(str, c, i);
 	end = ft_end(str, c, start);
-	ret = (char**)malloc(sizeof(*ret) * ft_words_nb(str, c) + 1);
-	if (ret == NULL)
+	if (!(ret = (char**)malloc(sizeof(*ret) * ft_words_nb(str, c) + 1)))
 		return (NULL);
 	while (i < ft_words_nb(str, c) && start < ft_strlen(str))
 	{
 		ret[i] = ft_strsub(str, start, end - (size_t)start);
 		start = ft_start(str, c, end);
 		end = ft_end(str, c, start);
-		i++;
+		++i;
 	}
 	ret[i] = NULL;
 	return (ret);

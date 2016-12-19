@@ -26,5 +26,15 @@ int		ft_error_msh(int e, char *str)
 	}
 	else if (e == NO_HOME)
 		ft_putendl_fd("minishell: cd: HOME not set", 2);
+	else if (e == TM_ARGS)
+	{
+		ft_putstr_fd("cd: string not in pwd: ", 2);
+		ft_putendl_fd(str ? str : "", 2);
+	}
+	else if (e == P_DENIED)
+	{
+		ft_putstr_fd("cd: permission denied: ", 2);
+		ft_putendl_fd(str ? str : "", 2);
+	}
 	return (0);
 }

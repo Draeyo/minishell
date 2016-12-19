@@ -15,11 +15,15 @@
 void	prompt_cmd(t_msh *msh)
 {
 	int		i;
+	char	*path;
 
 	while (42)
 	{
 		i = -1;
-		ft_printf("\x1b[1;34m#\x1b[0m \x1b[36m%s\x1b[0m \n\x1b[1;31m$\x1b[0m ", USER);
+		path = get_env(ENV, "PWD=");
+		ft_printf("\n\x1b[1;34m#\x1b[0m \x1b[36m%s\x1b[0m in ", USER);
+		ft_printf("\x1b[1;33m%s\x1b[0m\n\x1b[1;31m%c\x1b[0m ", path, '$');
+		free(path);
 		get_input(msh);
 		if (split_fword(msh))
 			start_process(msh);

@@ -23,11 +23,12 @@ int		main(int ac, char **av, char **env)
 	i = 0;
 	status = 0;
 	cmd = NULL;
-	if (!ft_tablen(env))
+	if (!(msh.env = ft_tabdup(env)))
 		no_env(&msh);
 	else
-		msh.env = ft_tabdup(env);
-	change_oldpwd(msh.env);
+		check_env_vars(&msh);
+	if (msh.env)
+		change_oldpwd(msh.env);
 	if (!(msh.path = get_env(env, "PATH=")))
 		msh.path = ft_strdup("/bin:/sbin:/usr/bin:/usr/sbin");
 	msh.paths = ft_strsplit(msh.path, ':');
