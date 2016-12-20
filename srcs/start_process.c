@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:31:11 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/08 08:31:12 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/20 15:22:58 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,23 +17,23 @@ void	start_process(t_msh *msh)
 	pid_t	process;
 	int		i;
 	char	*cmd;
-	int		tablen;
 	int		ret;
 
 	process = fork();
 	i = -1;
 	cmd = NULL;
 	ret = -1;
-	tablen = ft_tablen(PATHS);
 	if (process == 0)
 	{
+		if (EX_FILE)
+			ret = execve(COMMAND, ARGS, ENV);
 		while (PATHS[++i] && ret < 0)
 		{
 			cmd = join_path(PATHS[i], COMMAND);
 			ret = execve(cmd, ARGS, ENV);
 			free(cmd);
 		}
-		if (i >= tablen && COMMAND)
+		if (ret < 0)
 			ft_error_msh(NOT_FOUND, COMMAND);
 	}
 	else

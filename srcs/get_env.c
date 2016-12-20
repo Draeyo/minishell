@@ -6,15 +6,15 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:36:29 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/08 08:36:35 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/20 10:36:41 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int 	ft_start_with(char *str, char *comp)
+int		ft_start_with(char *str, char *comp)
 {
-	int 	i;
+	int		i;
 
 	i = -1;
 	if (ft_strlen(str) < ft_strlen(comp))

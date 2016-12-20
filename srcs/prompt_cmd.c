@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:33:03 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/08 08:33:08 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/20 15:29:26 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,8 @@ void	prompt_cmd(t_msh *msh)
 		get_input(msh);
 		if (split_fword(msh))
 			start_process(msh);
+		if (NEW_PATH)
+			free(NEW_PATH);
 		free(INPUT);
 		free(COMMAND);
 		while (++i < ft_tablen(ARGS))

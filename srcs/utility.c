@@ -6,16 +6,16 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:29:11 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/08 08:30:40 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/20 15:24:02 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		change_current_dir(t_msh *msh, char *pwd)
+void	change_current_dir(t_msh *msh, char *pwd)
 {
 	int		i;
-	char 	*tmp;
+	char	*tmp;
 
 	i = -1;
 	tmp = NULL;
@@ -41,7 +41,7 @@ void		change_current_dir(t_msh *msh, char *pwd)
 		}
 }
 
-void			print_env(t_msh *msh)
+void	print_env(t_msh *msh)
 {
 	int		i;
 
@@ -53,10 +53,11 @@ void			print_env(t_msh *msh)
 			ft_printf("%s\n", ENV[i]);
 }
 
-int				cmd_exceptions(t_msh *msh)
+int		cmd_exceptions(t_msh *msh)
 {
+	EX_FILE = 0;
 	if (!ft_strcmp(COMMAND, "exit"))
-		return (ft_exit(EXIT_CMD, msh));
+		ft_exit(EXIT_CMD, msh);
 	else if (!ft_strcmp(COMMAND, "env"))
 		print_env(msh);
 	else if (!ft_strcmp(COMMAND, "cd"))
@@ -67,12 +68,14 @@ int				cmd_exceptions(t_msh *msh)
 		ft_unsetenv(msh);
 	else if (!ft_strcmp(COMMAND, "echo"))
 		ft_echo(msh);
+	else if (exec_file(msh))
+		return (1);
 	else
 		return (1);
 	return (0);
 }
 
-int				split_fword(t_msh *msh)
+int		split_fword(t_msh *msh)
 {
 	int		i;
 
@@ -83,7 +86,8 @@ int				split_fword(t_msh *msh)
 		i++;
 	COMMAND = ft_strsub(INPUT, 0, i);
 	ARGS = ft_strsplit(INPUT, ' ');
-	if (!COMMAND[0] || COMMAND[0] == '\n' || COMMAND[0] == ' ' || COMMAND[0] == '\t')
+	if (!COMMAND[0] || COMMAND[0] == '\n' || COMMAND[0] == ' '
+			|| COMMAND[0] == '\t')
 		return (0);
 	return (cmd_exceptions(msh));
 }

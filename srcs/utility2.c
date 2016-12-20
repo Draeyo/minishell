@@ -6,15 +6,15 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/13 10:34:42 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/13 10:34:43 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/20 10:40:12 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void		change_oldpwd(char **env)
+void	change_oldpwd(char **env)
 {
-	int 	i;
+	int		i;
 	char	*tmp;
 
 	i = -1;
@@ -32,7 +32,7 @@ void		change_oldpwd(char **env)
 	}
 }
 
-void		no_env(t_msh *msh)
+void	no_env(t_msh *msh)
 {
 	char	*tmp;
 
@@ -57,11 +57,11 @@ char	*home_convpath(t_msh *msh, char *current)
 	return (ret);
 }
 
-void 	add_env_var(t_msh *msh, char *var)
+void	add_env_var(t_msh *msh, char *var)
 {
 	int		len;
 	int		i;
-	char 	**ret;
+	char	**ret;
 
 	len = ft_tablen(ENV) + 1;
 	i = -1;
@@ -77,8 +77,8 @@ void 	add_env_var(t_msh *msh, char *var)
 
 void	check_env_vars(t_msh *msh)
 {
-	char 	*pwd;
-	char 	*old_pwd;
+	char	*pwd;
+	char	*old_pwd;
 
 	if (!(pwd = get_env(ENV, "PWD=")))
 	{

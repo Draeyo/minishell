@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:34:33 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/08 08:34:58 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/20 15:33:08 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ char	*join_path(char *s1, char *s2)
 		return (s2);
 	if (!s2)
 		return (s1);
-	ret = ft_strnew(ft_strlen(s1) + ft_strlen(s2) + 1);
+	ret = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
 	while (s1[++i])
 		ret[i] = s1[i];
 	ret[i] = '/';

@@ -1,6 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   move_cd.c                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2016/12/20 10:37:26 by vlistrat          #+#    #+#             */
+/*   Updated: 2016/12/20 15:28:14 by vlistrat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
-static int	cd_back(t_msh *msh, char *homedir)
+static int		cd_back(t_msh *msh, char *homedir)
 {
 	if (ARGS[1] && !ft_strcmp(ARGS[1], "-"))
 	{
@@ -19,7 +31,7 @@ static int	cd_back(t_msh *msh, char *homedir)
 	return (0);
 }
 
-static int	cd_std(t_msh *msh, char *homedir)
+static int		cd_std(t_msh *msh, char *homedir)
 {
 	if (ARGS[1] && ft_strcmp(ARGS[1], "-"))
 	{
@@ -35,10 +47,6 @@ static int	cd_std(t_msh *msh, char *homedir)
 			homedir = ft_strdup(ARGS[1]);
 		if (chdir(homedir))
 		{
-			if (access(ARGS[1], R_OK) < 0)
-				ft_error_msh(P_DENIED, ARGS[1]);
-			else
-				ft_error_msh(WRONG_PATH, ARGS[1]);
 			free(homedir);
 			return (0);
 		}
@@ -49,7 +57,7 @@ static int	cd_std(t_msh *msh, char *homedir)
 	return (0);
 }
 
-static int 	cd_home(t_msh *msh, char *homedir)
+static int		cd_home(t_msh *msh, char *homedir)
 {
 	if (!ARGS[1] || (ARGS[1] && !ft_strcmp(ARGS[1], "~")))
 	{
@@ -68,10 +76,16 @@ static int 	cd_home(t_msh *msh, char *homedir)
 	return (0);
 }
 
-void	move_cd(t_msh *msh)
+void			move_cd(t_msh *msh)
 {
 	char	*homedir;
+	char	*new_path;
 
+	NEW_PATH = NULL;
+	if (!cd_valid(msh, (ARGS[1] ? ARGS[1] : NULL), new_path))
+	{
+		return ;
+	}
 	if (ft_tablen(ARGS) > 2)
 	{
 		ft_error_msh(TM_ARGS, (ARGS[1] ? ARGS[1] : NULL));

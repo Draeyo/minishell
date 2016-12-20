@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 08:01:27 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/08 08:28:23 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/20 15:27:23 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,9 @@
 # define CWD msh->cwd
 # define OLD_CWD msh->old_cwd
 # define TMP_CWD msh->tmp_cwd
+# define EX_FILE msh->ex_file
+# define SHLVL msh->shlvl
+# define NEW_PATH msh->NEW_PATH
 
 typedef struct		s_msh
 {
@@ -67,6 +70,9 @@ typedef struct		s_msh
 	char		*user;
 	int			pidstat;
 	char		*cwd;
+	int			ex_file;
+	int			shlvl;
+	char		*new_path;
 }					t_msh;
 
 int					ft_error_msh(int e, char *str);
@@ -75,11 +81,15 @@ int					split_fword(t_msh *msh);
 int					cmd_exeptions(t_msh *msh);
 int					ft_setenv(t_msh *msh);
 int					ft_unsetenv(t_msh *msh);
-int 				ft_start_with(char *str, char *comp);
+int					ft_start_with(char *str, char *comp);
+int					cd_valid(t_msh *msh, char *arg);
+int					exec_file(t_msh *msh);
+int					str_env_str(char *str, char *comp);
 
 char				*get_env(char **env, char *rule);
 char				*join_path(char *s1, char *s2);
 char				*home_convpath(t_msh *msh, char *current);
+char				*shlvl_mod(t_msh *msh, int a);
 
 void				get_input(t_msh *msh);
 void				prompt_cmd(t_msh *msh);

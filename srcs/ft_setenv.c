@@ -6,13 +6,13 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:32:51 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/08 10:45:50 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/20 10:35:43 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void 	change_user(t_msh *msh)
+static void		change_user(t_msh *msh)
 {
 	char *user;
 
@@ -21,7 +21,7 @@ static void 	change_user(t_msh *msh)
 	USER = user;
 }
 
-static void 	change_path(t_msh *msh)
+static void		change_path(t_msh *msh)
 {
 	char	*path;
 
