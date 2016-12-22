@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 10:37:26 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/20 15:28:14 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/22 12:07:13 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,7 +82,7 @@ void			move_cd(t_msh *msh)
 	char	*new_path;
 
 	NEW_PATH = NULL;
-	if (!cd_valid(msh, (ARGS[1] ? ARGS[1] : NULL), new_path))
+	if (!cd_valid(msh, (ARGS[1] ? ARGS[1] : NULL)))
 	{
 		return ;
 	}

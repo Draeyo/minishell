@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/11/29 08:01:27 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/20 15:27:23 by vlistrat         ###   ########.fr       */
+/*   Updated: 2016/12/22 12:06:48 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define TMP_CWD msh->tmp_cwd
 # define EX_FILE msh->ex_file
 # define SHLVL msh->shlvl
-# define NEW_PATH msh->NEW_PATH
+# define NEW_PATH msh->new_path
 
 typedef struct		s_msh
 {

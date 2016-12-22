@@ -27,7 +27,7 @@ char	*join_path(char *s1, char *s2)
 		return (s2);
 	if (!s2)
 		return (s1);
-	ret = ft_strnew(ft_strlen(s1) + ft_strlen(s2));
+	ret = ft_strnew(ft_strlen(s1) + ft_strlen(s2) + 1);
 	while (s1[++i])
 		ret[i] = s1[i];
 	ret[i] = '/';
