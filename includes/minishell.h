@@ -104,5 +104,6 @@ void				no_env(t_msh *msh);
 void				change_current_dir(t_msh *msh, char *pwd);
 void				check_env_vars(t_msh *msh);
 void				add_env_var(t_msh *msh, char *var);
+void				strfree(char *str);
 
 #endif

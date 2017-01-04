@@ -30,7 +30,10 @@ char	*join_path(char *s1, char *s2)
 	ret = ft_strnew(ft_strlen(s1) + ft_strlen(s2) + 1);
 	while (s1[++i])
 		ret[i] = s1[i];
-	ret[i] = '/';
+	if (ret[i - 1] != '/')
+		ret[i] = '/';
+	else
+		--i;
 	while (s2[++j])
 		ret[++i] = s2[j];
 	return (ret);

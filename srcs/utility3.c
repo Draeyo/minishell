@@ -20,8 +20,10 @@ int		cd_valid(t_msh *msh, char *arg)
 	tmp = NULL;
 	if (!arg || !ft_strcmp(arg, "-") || !ft_strcmp(arg, "~"))
 		return (1);
-	if (arg && ((arg[0] && arg[0] != '/') || (arg[0] && arg[1] && arg[0] != '.'
-					&& arg[1] != '/')))
+	if (arg && arg[0] == '~' && arg[1])
+		NEW_PATH = home_convpath(msh, arg);
+	else if (arg && ((arg[0] && arg[0] != '/') || (arg[0] && arg[1]
+		&& arg[0] != '.' && arg[1] != '/')))
 	{
 		tmp = getcwd(NULL, 0);
 		NEW_PATH = join_path(tmp, arg);
@@ -59,14 +61,12 @@ char	*shlvl_mod(t_msh *msh, int a)
 	int		lvl;
 
 	shlvl = get_env(ENV, "SHLVL=");
-	ft_printf("SHLVL %s\n", shlvl);
 	if (a >= 0)
 		lvl = ft_s_atoi(shlvl) + 1;
 	else
 		lvl = ft_s_atoi(shlvl) - 1;
 	free(shlvl);
 	shlvl = ft_xtoa(lvl);
-	ft_printf("SHLVL %s\n", shlvl);
 	SHLVL = lvl;
 	return (shlvl);
 }
@@ -85,4 +85,13 @@ int		exec_file(t_msh *msh)
 		return (1);
 	}
 	return (0);
+}
+
+void	strfree(char *str)
+{
+	if (str)
+	{
+		free(str);
+		str = NULL;
+	}
 }

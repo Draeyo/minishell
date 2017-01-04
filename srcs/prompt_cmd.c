@@ -6,13 +6,31 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:33:03 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/20 15:29:26 by vlistrat         ###   ########.fr       */
+/*   Updated: 2017/01/04 09:43:17 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	prompt_cmd(t_msh *msh)
+static void		clean_loop(t_msh *msh)
+{
+	int		i;
+
+	i = 0;
+	if (INPUT)
+		strfree(INPUT);
+	if (COMMAND)
+		strfree(COMMAND);
+	if (ARGS)
+	{
+		while (i++ < ft_tablen(ARGS))
+			strfree(ARGS[i]);
+		free(ARGS);
+		ARGS = NULL;
+	}
+}
+
+void			prompt_cmd(t_msh *msh)
 {
 	int		i;
 	char	*path;
@@ -28,11 +46,10 @@ void	prompt_cmd(t_msh *msh)
 		if (split_fword(msh))
 			start_process(msh);
 		if (NEW_PATH)
+		{
 			free(NEW_PATH);
-		free(INPUT);
-		free(COMMAND);
-		while (++i < ft_tablen(ARGS))
-			free(ARGS[i]);
-		free(ARGS);
+			NEW_PATH = NULL;
+		}
+		clean_loop(msh);
 	}
 }

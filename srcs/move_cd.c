@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 10:37:26 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/22 12:07:13 by vlistrat         ###   ########.fr       */
+/*   Updated: 2017/01/04 09:43:59 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,9 +83,7 @@ void			move_cd(t_msh *msh)
 
 	NEW_PATH = NULL;
 	if (!cd_valid(msh, (ARGS[1] ? ARGS[1] : NULL)))
-	{
 		return ;
-	}
 	if (ft_tablen(ARGS) > 2)
 	{
 		ft_error_msh(TM_ARGS, (ARGS[1] ? ARGS[1] : NULL));
