@@ -58,6 +58,7 @@
 # define EX_FILE msh->ex_file
 # define SHLVL msh->shlvl
 # define NEW_PATH msh->new_path
+# define CMD_PATH msh->cmd_path
 
 typedef struct		s_msh
 {
@@ -73,6 +74,7 @@ typedef struct		s_msh
 	int			ex_file;
 	int			shlvl;
 	char		*new_path;
+	char 		*cmd_path;
 }					t_msh;
 
 int					ft_error_msh(int e, char *str);
@@ -90,6 +92,7 @@ char				*get_env(char **env, char *rule);
 char				*join_path(char *s1, char *s2);
 char				*home_convpath(t_msh *msh, char *current);
 char				*shlvl_mod(t_msh *msh, int a);
+char 				**exp_tab(char **tab, size_t len, char *new_entry);
 
 void				get_input(t_msh *msh);
 void				prompt_cmd(t_msh *msh);

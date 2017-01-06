@@ -54,7 +54,7 @@ static int		check_env(t_msh *msh)
 	return (-1);
 }
 
-static char		**exp_tab(char **tab, size_t len, char *new_entry)
+char		**exp_tab(char **tab, size_t len, char *new_entry)
 {
 	int		i;
 	char	**ret;

@@ -12,27 +12,46 @@
 
 #include "minishell.h"
 
+static int	check_bin(t_msh *msh)
+{
+	struct stat stat;
+	char	*tmp;
+	int		i;
+	int		ret;
+
+	i = -1;
+	tmp = NULL;
+	ret = -1;
+	while (PATHS[++i] && ret < 0)
+	{
+		tmp = join_path(PATHS[i], COMMAND);
+		if ((ret = lstat(tmp, &stat)) == 0)
+			CMD_PATH = ft_strdup(tmp);
+		free(tmp);
+	}
+	if (ret == 0)
+		return (1);
+	return (0);
+}
+
 void	start_process(t_msh *msh)
 {
 	pid_t	process;
-	int		i;
-	char	*cmd;
 	int		ret;
 
+	if (!check_bin(msh))
+	{
+		ft_error_msh(NOT_FOUND, COMMAND);
+		return ;
+	}
 	process = fork();
-	i = -1;
-	cmd = NULL;
 	ret = -1;
 	if (process == 0)
 	{
 		if (EX_FILE)
 			ret = execve(COMMAND, ARGS, ENV);
-		while (PATHS[++i] && ret < 0)
-		{
-			cmd = join_path(PATHS[i], COMMAND);
-			ret = execve(cmd, ARGS, ENV);
-			free(cmd);
-		}
+		else
+			ret = execve(CMD_PATH, ARGS, ENV);
 		if (ret < 0)
 			ft_error_msh(NOT_FOUND, COMMAND);
 	}

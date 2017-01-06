@@ -16,7 +16,11 @@ static int		cd_back(t_msh *msh, char *homedir)
 {
 	if (ARGS[1] && !ft_strcmp(ARGS[1], "-"))
 	{
-		homedir = get_env(ENV, "OLDPWD=");
+		if (!(homedir = get_env(ENV, "OLDPWD=")))
+		{
+			ft_error_msh(WRONG_PATH, NULL);
+			return (0);
+		}
 		ft_printf("%s\n", homedir);
 		if (chdir(homedir))
 		{

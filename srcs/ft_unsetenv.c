@@ -12,6 +12,26 @@
 
 #include "minishell.h"
 
+static int		comp_env(char *str, char *env_var)
+{
+	char	*tmp;
+	int		i;
+
+	i = 0;
+	if (!str || !env_var)
+		return (0);
+	while (str[i] && str[i] != '=')
+		i++;
+	tmp = ft_strsub(str, 0, i);
+	if (!ft_strcmp(tmp, env_var))
+	{
+		free(tmp);
+		return (1);
+	}
+	free(tmp);
+	return (0);
+}
+
 static void		red_unsetenv(t_msh *msh, char *env_var, int *a)
 {
 	int		i;
@@ -22,7 +42,7 @@ static void		red_unsetenv(t_msh *msh, char *env_var, int *a)
 	while (ENV[++i])
 	{
 		++j;
-		if ((ENV[j] && ft_strstr(ENV[i], env_var)) || *a)
+		if ((ENV[j] && comp_env(ENV[i], env_var)) || *a)
 		{
 			free(ENV[i]);
 			ENV[i] = NULL;
@@ -30,7 +50,7 @@ static void		red_unsetenv(t_msh *msh, char *env_var, int *a)
 				ENV[i] = ft_strdup(ENV[j]);
 			*a = 1;
 		}
-		else if (!ENV[j] && ft_strstr(ENV[i], env_var))
+		else if (!ENV[j] && comp_env(ENV[i], env_var))
 		{
 			free(ENV[i]);
 			ENV[i] = NULL;

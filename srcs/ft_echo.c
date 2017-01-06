@@ -12,6 +12,21 @@
 
 #include "minishell.h"
 
+static int		quote_check(char *str, int j)
+{
+	if (j && str[j - 1] != '\\' && (str[j] == '\"' || str[j] == '\''))
+		return (0);
+	else if (j && str[j - 1] == '\\' && (str[j] == '\"' || str[j] == '\''))
+		return (1);
+	else if (!j && (str[j] == '\"' || str[j] == '\''))
+		return (0);
+	else if (str[j + 1] && str[j] == '\\' && (str[j + 1] == '\"'
+		|| str[j + 1] == '\''))
+		return (0);
+	else
+		return (1);
+}
+
 void	ft_echo(t_msh *msh)
 {
 	int		i;
@@ -25,7 +40,7 @@ void	ft_echo(t_msh *msh)
 		if (i > 1)
 			ft_printf(" ");
 		while (ARGS[i][++j])
-			if (ARGS[i][j] != '\"' && ARGS[i][j] != '\'')
+			if (quote_check(ARGS[i], j))
 				write(1, &ARGS[i][j], 1);
 	}
 	ft_printf("\n");

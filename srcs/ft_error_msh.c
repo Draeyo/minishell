@@ -22,7 +22,7 @@ int		ft_error_msh(int e, char *str)
 	else if (e == WRONG_PATH)
 	{
 		ft_putstr_fd("cd: no such file or directory: ", 2);
-		ft_putendl_fd(str, 2);
+		ft_putendl_fd(str ? str : "", 2);
 	}
 	else if (e == NO_HOME)
 		ft_putendl_fd("minishell: cd: HOME not set", 2);
