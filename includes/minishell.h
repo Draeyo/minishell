@@ -108,5 +108,8 @@ void				change_current_dir(t_msh *msh, char *pwd);
 void				check_env_vars(t_msh *msh);
 void				add_env_var(t_msh *msh, char *var);
 void				strfree(char *str);
+void				check_oldpwd(t_msh *msh);
+void				change_pwd(t_msh *msh);
+void				create_oldpwd(t_msh *msh);
 
 #endif

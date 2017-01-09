@@ -14,31 +14,9 @@
 
 void	change_current_dir(t_msh *msh, char *pwd)
 {
-	int		i;
-	char	*tmp;
-
-	i = -1;
-	tmp = NULL;
-	while (ENV[++i])
-	{
-		if (ft_start_with(ENV[i], "OLDPWD"))
-		{
-			tmp = get_env(ENV, "PWD=");
-			free(ENV[i]);
-			ENV[i] = ft_strjoin("OLDPWD=", tmp);
-			free(tmp);
-		}
-	}
-	i = -1;
-	while (ENV[++i])
-		if (ft_start_with(ENV[i], "PWD") && !ft_start_with(ENV[i], "OLDPWD"))
-		{
-			free(ENV[i]);
-			CWD = getcwd(NULL, 0);
-			ENV[i] = ft_strjoin("PWD=", CWD);
-			free(CWD);
-			return ;
-		}
+	check_oldpwd(msh);
+	create_oldpwd(msh);
+	change_pwd(msh);
 }
 
 void	print_env(t_msh *msh)
