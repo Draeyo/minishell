@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:36:51 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/08 08:36:56 by vlistrat         ###   ########.fr       */
+/*   Updated: 2017/01/09 11:37:52 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ static int		quote_check(char *str, int j)
 		return (1);
 }
 
-void	ft_echo(t_msh *msh)
+void			ft_echo(t_msh *msh)
 {
 	int		i;
 	int		j;

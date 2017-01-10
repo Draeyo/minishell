@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   cd_pwd.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2017/01/09 11:36:14 by vlistrat          #+#    #+#             */
+/*   Updated: 2017/01/09 11:37:33 by vlistrat         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "minishell.h"
 
 void	check_oldpwd(t_msh *msh)
@@ -7,7 +19,7 @@ void	check_oldpwd(t_msh *msh)
 
 	i = -1;
 	tmp = NULL;
-	while(ENV[++i])
+	while (ENV[++i])
 	{
 		if (ft_start_with(ENV[i], "OLDPWD="))
 		{

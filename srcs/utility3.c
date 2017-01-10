@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/20 10:34:19 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/20 15:28:02 by vlistrat         ###   ########.fr       */
+/*   Updated: 2017/01/09 11:43:03 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,8 @@
 int		cd_valid(t_msh *msh, char *arg)
 {
 	struct stat	stat;
-	char		*tmp;
 
-	tmp = NULL;
+	TMP_VAL = NULL;
 	if (!arg || !ft_strcmp(arg, "-") || !ft_strcmp(arg, "~"))
 		return (1);
 	if (arg && arg[0] == '~' && arg[1])
@@ -25,9 +24,9 @@ int		cd_valid(t_msh *msh, char *arg)
 	else if (arg && ((arg[0] && arg[0] != '/') || (arg[0] && arg[1]
 		&& arg[0] != '.' && arg[1] != '/')))
 	{
-		tmp = getcwd(NULL, 0);
-		NEW_PATH = join_path(tmp, arg);
-		free(tmp);
+		TMP_VAL = getcwd(NULL, 0);
+		NEW_PATH = join_path(TMP_VAL, arg);
+		free(TMP_VAL);
 	}
 	if (lstat((!NEW_PATH ? arg : NEW_PATH), &stat) < 0)
 	{

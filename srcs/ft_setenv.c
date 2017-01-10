@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:32:51 by vlistrat          #+#    #+#             */
-/*   Updated: 2016/12/20 10:35:43 by vlistrat         ###   ########.fr       */
+/*   Updated: 2017/01/09 11:38:40 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ static int		check_env(t_msh *msh)
 	return (-1);
 }
 
-char		**exp_tab(char **tab, size_t len, char *new_entry)
+char			**exp_tab(char **tab, size_t len, char *new_entry)
 {
 	int		i;
 	char	**ret;

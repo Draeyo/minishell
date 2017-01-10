@@ -6,17 +6,17 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:33:03 by vlistrat          #+#    #+#             */
-/*   Updated: 2017/01/05 09:21:43 by vlistrat         ###   ########.fr       */
+/*   Updated: 2017/01/09 11:39:41 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-static void 		check_pwd(t_msh *msh)
+static void		check_pwd(t_msh *msh)
 {
 	char	*tmp;
-	char 	*tmp_pwd;
-	char 	*tmp_path;
+	char	*tmp_pwd;
+	char	*tmp_path;
 	char	**tmp_env;
 
 	tmp_path = NULL;
@@ -31,21 +31,32 @@ static void 		check_pwd(t_msh *msh)
 		free(tmp_path);
 		ENV = tmp_env;
 	}
+	else
+		free(tmp);
 }
 
 static void		clean_loop(t_msh *msh)
 {
 	int		i;
 
-	i = 0;
+	i = -1;
 	if (INPUT)
-		strfree(INPUT);
+	{
+		free(INPUT);
+		INPUT = NULL;
+	}
 	if (COMMAND)
-		strfree(COMMAND);
+	{
+		free(COMMAND);
+		COMMAND = NULL;
+	}
 	if (ARGS)
 	{
-		while (i++ < ft_tablen(ARGS))
-			strfree(ARGS[i]);
+		while (ARGS[++i])
+		{
+			free(ARGS[i]);
+			ARGS[i] = NULL;
+		}
 		free(ARGS);
 		ARGS = NULL;
 	}

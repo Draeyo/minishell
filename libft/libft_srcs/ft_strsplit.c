@@ -11,6 +11,7 @@
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdio.h>
 
 static unsigned int		ft_start(char *str, char c, unsigned int i)
 {
@@ -43,9 +44,7 @@ static int				ft_words_nb(char *str, char c)
 	while (str[i])
 	{
 		if (str[i] == c)
-		{
 			i = ft_start(str, c, i);
-		}
 		else if (str[i] != c)
 		{
 			i = ft_end(str, c, i);
@@ -69,14 +68,14 @@ char					**ft_strsplit(char const *s, char c)
 	str = (char*)s;
 	start = ft_start(str, c, i);
 	end = ft_end(str, c, start);
-	if (!(ret = (char**)malloc(sizeof(*ret) * ft_words_nb(str, c) + 1)))
+	if (!(ret = (char**)malloc(sizeof(*ret) * (ft_words_nb(str, c) + 1))))
 		return (NULL);
 	while (i < ft_words_nb(str, c) && start < ft_strlen(str))
 	{
 		ret[i] = ft_strsub(str, start, end - (size_t)start);
 		start = ft_start(str, c, end);
 		end = ft_end(str, c, start);
-		++i;
+		i++;
 	}
 	ret[i] = NULL;
 	return (ret);

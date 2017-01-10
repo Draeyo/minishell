@@ -33,9 +33,13 @@ void	free_msh(t_msh *msh)
 	if (INPUT)
 		free(INPUT);
 	if (ENV)
-		free_tab(ENV);
+		ft_free_tab(ENV);
 	if (PATHS)
-		free_tab(PATHS);
+		ft_free_tab(PATHS);
 	if (ARGS)
-		free_tab(ARGS);
+		ft_free_tab(ARGS);
+	if (USER)
+		free(USER);
+	if (CMD_PATH)
+		free(CMD_PATH);
 }

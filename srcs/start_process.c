@@ -6,7 +6,7 @@
 /*   By: vlistrat <vlistrat@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2016/12/08 08:31:11 by vlistrat          #+#    #+#             */
-/*   Updated: 2017/01/05 09:21:40 by vlistrat         ###   ########.fr       */
+/*   Updated: 2017/01/09 11:40:23 by vlistrat         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 static int	check_bin(t_msh *msh)
 {
-	struct stat stat;
-	char	*tmp;
-	int		i;
-	int		ret;
+	struct stat		stat;
+	char			*tmp;
+	int				i;
+	int				ret;
 
 	i = -1;
 	tmp = NULL;
@@ -34,12 +34,12 @@ static int	check_bin(t_msh *msh)
 	return (0);
 }
 
-void	start_process(t_msh *msh)
+void		start_process(t_msh *msh)
 {
 	pid_t	process;
 	int		ret;
 
-	if (!check_bin(msh))
+	if (!check_bin(msh) && !EX_FILE)
 	{
 		ft_error_msh(NOT_FOUND, COMMAND);
 		return ;
@@ -51,7 +51,11 @@ void	start_process(t_msh *msh)
 		if (EX_FILE)
 			ret = execve(COMMAND, ARGS, ENV);
 		else
+		{
 			ret = execve(CMD_PATH, ARGS, ENV);
+			free(CMD_PATH);
+			CMD_PATH = NULL;
+		}
 		if (ret < 0)
 			ft_error_msh(NOT_FOUND, COMMAND);
 	}

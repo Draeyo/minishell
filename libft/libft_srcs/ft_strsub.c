@@ -20,16 +20,10 @@ char	*ft_strsub(char const *s, unsigned int start, size_t len)
 	i = 0;
 	if (s)
 	{
-		copie = ft_strnew(len);
-		if (copie == NULL)
+		if (!(copie = ft_strnew(len)))
 			return (NULL);
-		while (len > 0)
-		{
-			copie[i] = (char)s[start];
-			i++;
-			start++;
-			len--;
-		}
+		while (len-- > 0)
+			copie[i++] = (char)s[start++];
 		return (copie);
 	}
 	return (NULL);
