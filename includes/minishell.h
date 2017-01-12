@@ -23,11 +23,6 @@
 # include <signal.h>
 
 /*
-** DEBUG
-*/
-# define DEBUG(x) ft_printf("DEBUG %d\n", x)
-
-/*
 ** ERRORS
 */
 # define NOT_FOUND 1
@@ -109,7 +104,7 @@ void				no_env(t_msh *msh);
 void				change_current_dir(t_msh *msh, char *pwd);
 void				check_env_vars(t_msh *msh);
 void				add_env_var(t_msh *msh, char *var);
-void				strfree(char *str);
+void				strfree(char **str);
 void				check_oldpwd(t_msh *msh);
 void				change_pwd(t_msh *msh);
 void				create_oldpwd(t_msh *msh);

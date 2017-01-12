@@ -41,22 +41,13 @@ static void		clean_loop(t_msh *msh)
 
 	i = -1;
 	if (INPUT)
-	{
-		free(INPUT);
-		INPUT = NULL;
-	}
+		strfree(&INPUT);
 	if (COMMAND)
-	{
-		free(COMMAND);
-		COMMAND = NULL;
-	}
+		strfree(&COMMAND);
 	if (ARGS)
 	{
 		while (ARGS[++i])
-		{
-			free(ARGS[i]);
-			ARGS[i] = NULL;
-		}
+			strfree(&ARGS[i]);
 		free(ARGS);
 		ARGS = NULL;
 	}
@@ -79,10 +70,9 @@ void			prompt_cmd(t_msh *msh)
 		if (split_fword(msh))
 			start_process(msh);
 		if (NEW_PATH)
-		{
-			free(NEW_PATH);
-			NEW_PATH = NULL;
-		}
+			strfree(&NEW_PATH);
+		if (CMD_PATH)
+			strfree(&CMD_PATH);
 		clean_loop(msh);
 	}
 }

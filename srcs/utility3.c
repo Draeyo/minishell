@@ -86,11 +86,11 @@ int		exec_file(t_msh *msh)
 	return (0);
 }
 
-void	strfree(char *str)
+void	strfree(char **str)
 {
-	if (str)
+	if (*str)
 	{
-		free(str);
-		str = NULL;
+		free(*str);
+		*str = NULL;
 	}
 }

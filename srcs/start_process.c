@@ -22,6 +22,7 @@ static int	check_bin(t_msh *msh)
 	i = -1;
 	tmp = NULL;
 	ret = -1;
+	CMD_PATH = NULL;
 	while (PATHS[++i] && ret < 0)
 	{
 		tmp = join_path(PATHS[i], COMMAND);
@@ -53,8 +54,7 @@ void		start_process(t_msh *msh)
 		else
 		{
 			ret = execve(CMD_PATH, ARGS, ENV);
-			free(CMD_PATH);
-			CMD_PATH = NULL;
+			strfree(&CMD_PATH);
 		}
 		if (ret < 0)
 			ft_error_msh(NOT_FOUND, COMMAND);
